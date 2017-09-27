@@ -22,22 +22,25 @@ public class NewClass {
         String c =
                    getText("http://erdani.com/tdpl/hamlet.txt").toLowerCase().replaceAll("[^a-z ']",
                                                                                           "");
+        int count = 0;
         String[] sContent = String.join(" ", c.split("\n")).split(" ");
         HashMap<String, Integer> table = new HashMap<String, Integer>();
         for (String s : sContent) {
             if (!table.containsKey(s)) {
                 table.put(s, 1);
+                ++count;
             } else {
                 table.put(s, table.get(s) + 1);
+                ++count;
             }
         }
         table.remove("");
         System.out.printf("prince appeared %d times", table.get("prince"));
-        //ArrayList<Entry<String, Integer>> sorted = sort(table);
-        //Collections.reverse(sorted);
-        //for (Entry<String, Integer> mem : sorted) {
-            //System.out.println(mem.getKey() + " : " + mem.getValue());
-        //}
+        ArrayList<Entry<String, Integer>> sorted = sort(table);
+        Collections.reverse(sorted);
+        for (Entry<String, Integer> mem : sorted) {
+            System.out.println(mem.getKey() + " : " + mem.getValue());
+        }
     }
     /**
      *
